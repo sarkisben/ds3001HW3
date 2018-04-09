@@ -8,6 +8,10 @@
   <body>
      <script>
         var dataset = []
+        d3.csv("Diplomatic_Exchange_2006v1.csv", function(data) {
+           dataset = data.map(function(d) {return [ +d["ccode1"], +d["ccode2"], +d["year"], +d["DR_at_1"], +d["DR_at_2"], +d["DE"], +d["version"] ]; });
+           console.log(dataset)
+        });
      </script>
     <h1> Oh hi Mark! </h1>
      <p> This should be size 12 </p>
