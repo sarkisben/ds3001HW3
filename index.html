@@ -17,6 +17,21 @@
            codes = data.map(function(d) { return [ d["StateAbb"], +d["CCode"], d["StateNme"] ]; });
            console.log(codes)
         });
+        dataset.forEach(function(data) {
+           var result = countrycodes.filter(function(countrycode) {
+              return countrycodes.CCode == data.ccode1;
+           });
+           delete data.ccode1;
+           data.ccode1 = (result[0] !== undefined) ? result[0].name : null;
+        });
+         dataset.forEach(function(data) {
+           var result = countrycodes.filter(function(countrycode) {
+              return countrycodes.CCode == data.ccode2;
+           });
+           delete data.ccode2;
+           data.ccode2 = (result[0] !== undefined) ? result[0].name : null;
+        });
+        console.log(dataset)
      </script>
     <h1> Oh hi Mark! </h1>
      <p> This should be size 12 </p>
