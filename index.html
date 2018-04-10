@@ -14,7 +14,7 @@
         });
         var countrycodes = [];
         d3.csv("COW country codes.csv").then(function(data) {
-           codes = data.map(function(d) { return [ ["StateAbb"], +d["CCode"], ["StateNme"] ]; });
+           codes = data.map(function(d) { return [ d["StateAbb"], +d["CCode"], d["StateNme"] ]; });
            console.log(codes)
         });
      </script>
