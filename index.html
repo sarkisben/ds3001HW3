@@ -7,7 +7,7 @@
   </head>
   <body>
      <script>
-        var dataset = d3.csvParseRows("Diplomatic_Exchange_2006v1.csv", function(d, i) {
+        var dataset = d3.dsv(",", "Diplomatic_Exchange_2006v1.csv", function(d) {
            return{
               ccode1: d[0],
               ccode2: d[1],
@@ -17,8 +17,10 @@
               DE: d[5],
               version: +d[5]
            };
+        }).then(function(data){
+           console.log(data);
         });
-        console.log(dataset)
+       
      </script>
     <h1> Oh hi Mark! </h1>
      <p> This should be size 12 </p>
