@@ -7,11 +7,17 @@
   </head>
   <body>
      <script>
-        var dataset = []
-        d3.csv("Diplomatic_Exchange_2006v1.csv", function(data) {
-           dataset = data.map(function(d) {return [ +d["ccode1"], +d["ccode2"], +d["year"], +d["DR_at_1"], +d["DR_at_2"], +d["DE"], +d["version"] ]; });
-           console.log(dataset)
-        });
+        var dataset = d3.csvParseRows("Diplomatic_Exchange_2006v1.csv", function(d, i) {
+           return{
+              ccode1: d[0],
+              ccode2: d[1],
+              year: d[2],
+              DR_at_1: d[3],
+              DR_at_2: d[4],
+              DE: d[5],
+              version: +d[5]
+           };
+        });   
      </script>
     <h1> Oh hi Mark! </h1>
      <p> This should be size 12 </p>
