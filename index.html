@@ -8,7 +8,7 @@
   <body>
      <script>
         var dataset = [];
-        d3.csv("Diplomatic_Exchange_2006v1.csv", function(data) {
+        d3.csv("Diplomatic_Exchange_2006v1.csv").then(function(data) {
            dataset = data.map(function(d) { return [ +d["ccode1"], +d["ccode2"], +d["year"], +d["DR_at_1"], +d["DR_at_2"], +d["DE"], +d["version"] ]; });
            console.log(dataset)
         });
