@@ -9,12 +9,12 @@
      <script>
         var dataset = d3.dsv(",", "Diplomatic_Exchange_2006v1.csv", function(d) {
            return{
-              ccode1: d[0],
-              ccode2: d[1],
-              year: d[2],
-              DR_at_1: d[3],
-              DR_at_2: d[4],
-              DE: d[5],
+              ccode1: +d[0],
+              ccode2: +d[1],
+              year: +d[2],
+              DR_at_1: +d[3],
+              DR_at_2: +d[4],
+              DE: +d[5],
               version: +d[5]
            };
         }).then(function(data){
