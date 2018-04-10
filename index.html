@@ -19,14 +19,14 @@
         });
         dataset.forEach(function(data) {
            var result = countrycodes.filter(function(countrycode) {
-              return countrycodes.CCode == data.ccode1;
+              return countrycodes.CCode === data.ccode1;
            });
            delete data.ccode1;
            data.ccode1 = (result[0] !== undefined) ? result[0].name : null;
         });
          dataset.forEach(function(data) {
            var result = countrycodes.filter(function(countrycode) {
-              return countrycodes.CCode == data.ccode2;
+              return countrycodes.CCode === data.ccode2;
            });
            delete data.ccode2;
            data.ccode2 = (result[0] !== undefined) ? result[0].name : null;
