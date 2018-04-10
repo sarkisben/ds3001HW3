@@ -7,6 +7,23 @@
   </head>
   <body>
      <script>
+        function join(lookupTable, mainTable, lookupKey, mainKey, select) {
+            var l = lookupTable.length,
+               m = mainTable.length,
+               lookupIndex = [],
+               output = [];
+            for (var i = 0; i < l; i++) { // loop through l items
+               var row = lookupTable[i];
+               lookupIndex[row[lookupKey]] = row; // create an index for lookup table
+            }
+            for (var j = 0; j < m; j++) { // loop through m items
+               var y = mainTable[j];
+               var x = lookupIndex[y[mainKey]]; // get corresponding row from lookupTable
+               output.push(select(y, x)); // select only the columns you need
+            }
+            return output;
+         };
+        
         var dataset = [];
         d3.csv("Diplomatic_Exchange_2006v1.csv").then(function(data) {
            dataset = data.map(function(d) { return [ +d["ccode1"], +d["ccode2"], +d["year"], +d["DR_at_1"], +d["DR_at_2"], +d["DE"], +d["version"] ]; });
@@ -17,21 +34,18 @@
            codes = data.map(function(d) { return [ d["StateAbb"], +d["CCode"], d["StateNme"] ]; });
            console.log(codes)
         });
-        dataset.forEach(function(data) {
-           var result = countrycodes.filter(function(countrycode) {
-              return countrycodes.CCode === data.ccode1;
-           });
-           delete data.ccode1;
-           data.ccode1 = (result[0] !== undefined) ? result[0].name : null;
-        });
-         dataset.forEach(function(data) {
-           var result = countrycodes.filter(function(countrycode) {
-              return countrycodes.CCode === data.ccode2;
-           });
-           delete data.ccode2;
-           data.ccode2 = (result[0] !== undefined) ? result[0].name : null;
-        });
-        console.log(dataset)
+        var res1 = join(countrycodes, dataset, "CCode", "ccode1", function(data, countrycode) {
+           return{
+              ccode1: (countrycode !== undefined) ? countrycode.StateNme : null,
+              ccode2: data.ccode2,
+              year: data.year,
+              DR_at_1: data.DR_at_1,
+              DR_at_2: data.DR_at_2,
+              DE: data.DE,
+              version: data.version
+           };
+        });   
+        console.log(res1)
      </script>
     <h1> Oh hi Mark! </h1>
      <p> This should be size 12 </p>
