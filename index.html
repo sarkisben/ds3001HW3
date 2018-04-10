@@ -12,6 +12,11 @@
            dataset = data.map(function(d) { return [ +d["ccode1"], +d["ccode2"], +d["year"], +d["DR_at_1"], +d["DR_at_2"], +d["DE"], +d["version"] ]; });
            console.log(dataset)
         });
+        var countrycodes = [];
+        d3.csv("COW country codes.csv").then(function(data) {
+           codes = data.map(function(d) { return [ ["StateAbb"], +d["CCode"], ["StateNme"] ]; });
+           console.log(codes)
+        });
      </script>
     <h1> Oh hi Mark! </h1>
      <p> This should be size 12 </p>
